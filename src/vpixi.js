@@ -33,10 +33,10 @@ export const apply = (container : Container,
   };
 
   const getCurrentType = (current : pixi.DisplayObject) : VPIXIType => {
-    if (current instanceof pixi.Container) {
-      return 'Container';
-    } else if (current instanceof pixi.Sprite) {
+    if (current instanceof pixi.Sprite) {
       return 'Sprite';
+    } else if (current instanceof pixi.Container) {
+      return 'Container';
     } else {
       return 'Other';
     }

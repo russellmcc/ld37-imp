@@ -1,0 +1,33 @@
+* round 1
+** devil in elevator
+** time travel - one room, different times
+** powers of 10
+** babayaga's house
+** yellow wallpaper
+** you are a boogiman haunting a hotel room, have to kill guests
+** fetus simulator
+** dorm room
+** jury deliberation
+** interior decorating "sim room"
+** cleaning person in hotel room
+** houseplant
+** interrogation
+** lighthouse
+** bluebeard - the dead wives (mad woman in the attic)
+** cameras - you are part of a camera?
+** bull in a china shop
+** how much of a room can you destroy?
+** one "chat room"
+* round 2
+** babayaga's house
+*** chicken foot qwop - you're babayaga, in the room, controlling levels
+*** have to cook peasants
+*** later levels - environmental obstacles that interact with house
+** yellow wallpaper
+*** bullet hell game - no win condition
+** cleaning service hotel room
+*** you are cleaning person, fucked up in some way - amount of time to clean; resources
+*** each level progressively more fucked up
+** camera - you are imp in a camera
+*** walk around, hold a button to be painting
+

@@ -1,0 +1,9 @@
+body {
+    background-color: black;
+}
+
+#wrapper {
+    background-color: white;
+    height: 480px;
+    width: 640px;
+}

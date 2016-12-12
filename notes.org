@@ -1,9 +1,11 @@
 * Russell TO DO
- - [ ] integrate canvas drawing to replace webcam in nn demo
- - [ ] switch from classification to similarity
- - [ ] integrate canvas drawing into pixi
- - [ ] integrate NN into pixi
- - [ ] game!
+ - [ ] ink sprite
+ - [ ] bg, etc.
+ - [ ] grading animation
+ - [ ] end game?
+ - [ ] slides for screens...
+ - [ ] fonts
+ - [ ] ink animation?
  - [ ] music/sound?
 * Licenses
  - [ ] Fabric: 

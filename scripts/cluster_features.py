@@ -28,7 +28,7 @@ cluster_set = all_features[numpy.random.random_integers(0, all_features.shape[0]
 
 print "Commencing clustering!!"
 codebook, distortion = scipy.cluster.vq.kmeans2(cluster_set, num_codes)
-with open('src/hog-codebook.js', 'w') as codebook_file:
-    codebook_file.write('export default function codebook() { return ')
+with open('static/hog-codebook.json', 'w') as codebook_file:
+    codebook_file.write('{"codebook":')
     json.dump(codebook.tolist(), codebook_file)
-    codebook_file.write(';}')
+    codebook_file.write('}')

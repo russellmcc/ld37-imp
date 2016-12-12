@@ -1,9 +1,12 @@
 // @flow
 
 import * as hog from 'hog-descriptor';
-import codebook_gen from './hog-codebook.js';
 
-const codebook: Array<Array<number>> = codebook_gen();
+let codebook: ?Array<Array<number>>;
+
+export function setCodebook(c: Array<Array<number>>) {
+  codebook = c;
+}
 
 const BLOCK_SIZE = 4;
 const BINS = 6;
@@ -29,7 +32,7 @@ workingCanvas.height = 128;
 workingCanvas.width = 128;
 const workingCtx = workingCanvas.getContext('2d');
 
-function l2dist(a: Array<number>, b: Array<number>) {
+function l2distSquared(a: Array<number>, b: Array<number>) {
   let sum = 0;
   if (a.length != b.length) {
     throw "uh oh!";
@@ -38,8 +41,11 @@ function l2dist(a: Array<number>, b: Array<number>) {
     sum += (a[i] - b[i]) * (a[i] - b[i]);
   }
 
-  sum /= a.length;
-  return Math.sqrt(sum);
+  return sum / a.length;
+}
+
+function l2dist(a: Array<number>, b: Array<number>) {
+  return Math.sqrt(l2distSquared(a, b));
 }
 
 function cosineSimilarity(a: Array<number>, b: Array<number>) {
@@ -61,17 +67,9 @@ function cosineSimilarity(a: Array<number>, b: Array<number>) {
   return sum;
 }
 
-function selectCode(block: Array<number>): number {
-  let bestInd = 0;
-  let minDist: ?number = null;
-  for (let i = 0; i < codebook.length; i++) {
-    const dist = l2dist(codebook[i], block);
-    if (minDist === null || (minDist: any) > dist) {
-      minDist = dist;
-      bestInd = i;
-    }
-  }
-  return bestInd;
+function gaussianKernel(a: Array<number>, b: Array<number>) {
+  const sigma = 0.1;
+  return Math.exp(-(l2distSquared(a, b)/(2 * sigma)));
 }
 
 type Rect = {
@@ -105,16 +103,29 @@ function getBoundingBox(image: ImageData): Rect {
   };
 }
 
-function calculateHOG(source: HTMLCanvasElement): Array<number> {
-  const ctx = source.getContext('2d');
+function calculateHOG(source: HTMLCanvasElement | HTMLImageElement): Array<number> {
+  if (!codebook) {
+    console.error("No HOG codebook!");
+    return [];
+  }
+  let box;
+  if (source instanceof HTMLCanvasElement) {
+    box = {x: 0, y: 0, width:source.width, height: source.height};
+    // const ctx = source.getContext('2d');
+    // if (!ctx) {
+    //   console.error("couldn't get context!");
+    //   return [];
+    // }
+    // const sourceImage = ctx.getImageData(0, 0, source.width, source.height);
+    // box = getBoundingBox(sourceImage);
+  } else {
+    box = {x: 0, y: 0, width:source.width, height: source.height};
+  }
   const workCtx = workingCtx;
-  if (!ctx || !workCtx) {
+  if (!workCtx) {
     console.error("couldn't get context!");
     return [];
   }
-  const sourceImage = ctx.getImageData(0, 0, source.width, source.height);
-  const box = getBoundingBox(sourceImage);
-
   workCtx.clearRect(0, 0, workingCanvas.width, workingCanvas.height);
   if (box.width > box.height) {
     workCtx.drawImage(source, box.x, box.y, box.width, box.height,
@@ -142,18 +153,23 @@ function calculateHOG(source: HTMLCanvasElement): Array<number> {
   const blockCount = BINS * BLOCK_SIZE * BLOCK_SIZE;
 
   for (let i = 0; i < hog_features.length; i += blockCount) {
-    const code = selectCode(hog_features.slice(i, i + blockCount));
-    histogram[code] += 1;
+    for (let code = 0; code < codebook.length; code++) {
+      histogram[code] += gaussianKernel(codebook[code], hog_features.slice(i, i + blockCount));
+    }
+  }
+
+  for (let code = 0; code < codebook.length; code++) {
+    histogram[code] /= hog_features.length / blockCount;
   }
   return histogram;
 }
 
-export function setTargetImage(image: HTMLCanvasElement) {
+export function setTargetImage(image: HTMLCanvasElement | HTMLImageElement) {
   targetImageHOG = calculateHOG(image);
 };
 
 function compareHOGs(a: Array<number>, b: Array<number>): number {
-  return l2dist(a, b);
+  return 1000 * l2dist(a, b);
 };
 
 export function scoreAgainstTarget(image: HTMLCanvasElement) : number {

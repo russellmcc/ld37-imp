@@ -7,18 +7,15 @@ body {
     height: 480px;
     width: 640px;
     position: relative;
-    cursor: none;
 }
 
 #wrapper > canvas {
     pointer-events:none;
     position: absolute;
-    cursor: none !important;
 }
 
 #wrapper > * {
     position: absolute !important;
-    cursor: none !important;
     x: 0;
     y: 0;
 }

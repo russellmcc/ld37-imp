@@ -15,8 +15,7 @@ export type Sprite = {
   y: number,
   texture: string,
   width: number,
-  height: number,
-  rotation: ?number,
+  height: number
 };
 
 export type Container = {
@@ -24,6 +23,14 @@ export type Container = {
   children: Array<Sprite | Text | Container>,
   x: number,
   y: number,
+};
+
+let textStyle = new pixi.TextStyle;
+
+export function updateStyle(style: any) {
+  textStyle.fontFamily = style.fontFamily;
+  textStyle.lineHeight = 30;
+  console.log(textStyle);
 };
 
 export type TextureMap = {[id:string]: pixi.Texture};
@@ -58,6 +65,7 @@ export const apply = (container : Container,
     text.x = target.x;
     text.y = target.y;
     text.text = target.text;
+    text.style = textStyle;
   };
 
   const applySprite = (target : Sprite, sprite : pixi.Sprite) => {
@@ -71,6 +79,11 @@ export const apply = (container : Container,
     }
     sprite.width = target.width;
     sprite.height = target.height;
+    if (target.alpha) {
+      sprite.alpha = target.alpha;
+    } else {
+      sprite.alpha = 1;
+    }
   };
 
   const createNewObject = (target : Sprite | Container | Text) : pixi.DisplayObject => {

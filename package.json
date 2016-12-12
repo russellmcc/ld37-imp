@@ -20,6 +20,7 @@
     "get-pixels": "^3.3.0",
     "hog-descriptor": "^0.5.0",
     "howler": "^2.0.2",
+    "lodash": "^4.17.2",
     "lwip": "0.0.9",
     "pixi.js": "^4.2.3",
     "spritesheet-js": "^1.2.2",

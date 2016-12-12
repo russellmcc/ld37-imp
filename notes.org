@@ -1,11 +1,5 @@
 * Russell TO DO
- - [ ] ink sprite
- - [ ] bg, etc.
- - [ ] grading animation
- - [ ] end game?
- - [ ] slides for screens...
- - [ ] fonts
- - [ ] ink animation?
+ - [ ] corner imp.
  - [ ] music/sound?
 * Licenses
  - [ ] Fabric: 

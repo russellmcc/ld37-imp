@@ -1,5 +1,0 @@
-* Russell TO DO
- - [ ] corner imp.
- - [ ] music/sound?
-* Licenses
- - [ ] Fabric: 

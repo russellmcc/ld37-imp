@@ -93,7 +93,7 @@ function onMove(e) {
 
 function doClick(e) {
   if (currentState.state === 'ReadyToDraw') {
-    switchState({state:'Drawing', texture:currentState.texture, time:60, distance: 0, impFrame: 0});
+    switchState({state:'Drawing', texture:currentState.texture, time:45, distance: 0, impFrame: 0});
   }
   else if (currentState.state === 'Grading' && currentState.time > GRADING_SCROLL_TIME + GRADING_TWIRL_TIME) {
     if (gameScore <= -3) {
@@ -372,7 +372,7 @@ function showState(s : state.State): vpixi.Container {
         type: 'Text',
         x: 20,
         y: 50,
-        text:"Moorcock is ready for you to draw!\nYou\'ll have only 60 seconds to draw,\nso there's no time to delay!\nDraw by using the mouse.\nIf you run out of ink, refill by\nclicking on the inkwell on the left\nof your room.\nRemember, these are special memories\nof the evil warlock's vacation,\nand he doesn't like being disappointed!\n\nClick Anywhere to continue."
+        text:"Moorcock is ready for you to draw!\nYou\'ll have only 45 seconds to draw,\nso there's no time to delay!\nDraw by using the mouse.\nIf you run out of ink, refill by\nclicking on the inkwell on the left\nof your room.\nRemember, these are special memories\nof the evil warlock's vacation,\nand he doesn't like being disappointed!\n\nClick Anywhere to continue."
       }]}
   } else if (s.state === 'Drawing') {
     const impStr = "imp_medium_" + padDigits(Math.floor(s.impFrame), 5) + ".png"; 

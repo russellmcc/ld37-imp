@@ -41,7 +41,7 @@ imageSprite.height = 405;
 
 const GRADING_SCROLL_TIME = 3;
 const GRADING_TWIRL_TIME = 2;
-const NUM_IMAGES = 5;
+const NUM_IMAGES = 25;
 const INK_DISTANCE_MIN = 100;
 const INK_DISTANCE_MAX = 2000;
 const INK_TOP = 100;
@@ -481,7 +481,7 @@ function showState(s : state.State): vpixi.Container {
         type: 'Text',
         x: 20,
         y: 50,
-        text:"Oh No!  You've run afoul\nof the evil warlock Moorcock!\nHe's turned you into an imp\nand has forced you to live in his \ncamera.\nYour fate from here to eternity is to\ncapture his vacation memories in ink."
+        text:"Oh No!  You've run afoul\nof the evil warlock Moorcock!\nHe's turned you into an imp\nand has forced you to live in his \ncamera.\nYour fate from here to eternity is to\ncapture his vacation memories in ink.\n\nClick Anywhere to Continue."
       }]};
   } else if (s.state === 'GameOver') {
     return {

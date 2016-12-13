@@ -1,8 +1,9 @@
 {
-  "name": "pixi",
+  "name": "ld37-imp",
   "version": "1.0.0",
   "description": "testing",
   "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "dev-server": "webpack-dev-server --progress --colors --content-base dist/",
     "get-features": "babel scripts/get_features.js --out-file get_features.js && node get_features.js",

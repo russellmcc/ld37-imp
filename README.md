@@ -1,4 +1,4 @@
-This was a game implemented in a 48-hour period for a game jam.
+This was a game implemented in a 48-hour period for a game jam.  Please don't judge the code quality/maintainability as indicitive of my usual standards.
 
 Live demo available:
 russellmcc.github.io/ld37-imp/

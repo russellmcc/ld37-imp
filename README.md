@@ -1,6 +1,6 @@
 This was a game implemented in a 48-hour period for a game jam.  Please don't judge the code quality/maintainability as indicitive of my usual standards.
 
-[Live demo available](russellmcc.github.io/ld37-imp/)
+[Live demo available](http://russellmcc.github.io/ld37-imp/)
 
 You've been transformed into an imp, and trapped in a camera!
 Now it's up to you to draw your way out by capturing the evil warlock Moorcock's vacation memories!
